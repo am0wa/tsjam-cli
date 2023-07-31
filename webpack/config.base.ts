@@ -55,6 +55,7 @@ export const baseConfig: Configuration = merge(
   loadEslint({ extensions, srcPath: paths.SRC }),
   definePlugin({
     __DEVELOPMENT__: isDev(),
+    APP_NAME: APP_MANIFEST.name,
     APP_VERSION: JSON.stringify(APP_VERSION),
     'process.env': JSON.stringify(dotenv.parsed), // @usage: console.log(`ENV Variable: ${process.env.SECRET_KEY}`);
   }),

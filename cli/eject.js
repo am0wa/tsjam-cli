@@ -1,6 +1,7 @@
 const fs = require('fs');
-const { resolveToRoot, resolveToNodeModules, resolveToPath } = require('./resolve');
+const { resolveToRoot, resolveToNodeModules, resolveToPath } = require('../scripts/resolve');
 const os = require('os');
+const { exec } = require('../scripts/exec');
 
 const CONFIG_TARGET = '.webpack';
 const resolveToLib = resolveToPath('./../');
@@ -72,3 +73,6 @@ const addDotEnv = () => {
 copyParts();
 ejectScriptsAndDeps();
 addDotEnv();
+
+exec('npm install --save-prod react react-dom --ignore-scripts');
+exec('npm install --save-dev @types/react @types/react-dom --ignore-scripts');

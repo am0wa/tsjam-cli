@@ -12,6 +12,7 @@ Note: after install it would auto-eject all its parts into:
 - add wp:start/build scripts into ur package.json
 - add devDependencies into ur package.json
 - add .env file for local environment variables usage
+- install react & react-dom with types
 
 [webpack-cli]: https://www.npmjs.com/package/webpack-cli
 [survive-js-webpack]: https://survivejs.com/webpack/foreword/
