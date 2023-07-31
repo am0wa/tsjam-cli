@@ -1,6 +1,6 @@
 {
   "name": "tsjam-cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "CLI for ts react webpack & friends",
   "main": "",
   "keywords": [
@@ -21,7 +21,8 @@
     "code:format": "prettier './**/**.{js,jsx,ts,tsx}' --write",
     "prepublishOnly": "npm run clean:dist && npm run build",
     "prepare": "husky install",
-    "postinstall": "node bin/cli.js --help"
+    "postinstall": "node bin/cli.js --help",
+    "add-react": "node bin/cli.js --add-react"
   },
   "files": [
     "bin",
@@ -34,10 +35,17 @@
     "tsjam-cli": "bin/cli.js"
   },
   "prettier": "@tsjam/web-config-base/prettier.config.js",
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
+    "typescript": ">=4",
+    "webpack": "5.x",
+    "webpack-cli": "5.x"
+  },
+  "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@svgr/webpack": "8.0.1",
     "@swc/core": "^1.3.72",
+    "@tsjam/web-config-base": "^0.1.0",
     "@types/postcss-pxtorem": "^6.0.0",
     "autoprefixer": "^10.4.14",
     "clean-webpack-plugin": "^4.0.0",
@@ -50,8 +58,6 @@
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-pxtorem": "^6.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "sass": "^1.64.1",
     "sass-loader": "^13.3.2",
     "swc-loader": "^0.2.3",
@@ -62,13 +68,6 @@
     "webpack-dev-server": "^4.15.1",
     "webpack-manifest-plugin": "^5.0.0",
     "webpack-merge": "^5.9.0"
-  },
-  "peerDependencies": {
-    "typescript": ">=4"
-  },
-  "devDependencies": {
-    "@tsjam/web-config-base": "^0.1.0",
-    "typescript": "^5.1.6"
   },
   "lint-staged": {
     "*.{ts,tsx,js,css,scss,md}": "prettier --write"

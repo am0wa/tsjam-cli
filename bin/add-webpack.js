@@ -41,12 +41,12 @@ const ejectScriptsAndDeps = () => {
   console.log('> adding scripts:', JSON.stringify(newScripts, null, '\r\t'));
 
   const basePkgJson = require(resolveToLib('package.json'));
-  console.log('> adding devDependencies:', JSON.stringify(basePkgJson.dependencies, null, '\r\t'));
+  console.log('> adding devDependencies:', JSON.stringify(basePkgJson.devDependencies, null, '\r\t'));
 
   const newPkgJson = {
     ...targetPkgJson,
     scripts: { ...newScripts, ...targetPkgJson.scripts },
-    devDependencies: { ...targetPkgJson.devDependencies, ...basePkgJson.dependencies },
+    devDependencies: { ...targetPkgJson.devDependencies, ...basePkgJson.devDependencies },
   };
 
   updatePkgJson(newPkgJson);
