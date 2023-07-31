@@ -1,16 +1,17 @@
+- 0 installed dependencies under ur hood
 - SWC is 20x faster than Babel on a single thread and 70x faster on four cores
 - ForkTsChecker – Speeds up TypeScript type checking (by moving it to a separate process)
 - Obfuscate css classnames in production
 - chunkhash/contenthash for assets in production
 - Separate loaders for images and fonts
 
-Usage: `npm i --save-dev tsjam-cli`
+**Usage:** `npm i --save-dev tsjam-cli` or `npx tsjam-cli`
 
 ### Webpack parts
 
-Usage: `tsjam-cli --add-webpack`
+**Usage:** `tsjam-cli --add-webpack`
 
-Note: the following changes would be made:
+**Note:** the following changes would be made:
 
 - add .webpack – all preconfigured plugins with webpack config
 - add wp:start/build scripts into ur package.json
@@ -31,9 +32,9 @@ Note: the following changes would be made:
 
 ### React parts
 
-Usage: `tsjam-cli --add-react`
+**Usage:** `tsjam-cli --add-react`
 
-Note: the following changes would be made:
+**Note:** the following changes would be made:
 
 - install react 18 & react-dom with types
 - create app sample into public and src folders accordingly
