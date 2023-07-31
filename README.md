@@ -4,15 +4,18 @@
 - chunkhash/contenthash for assets in production
 - Separate loaders for images and fonts
 
-Usage: `npm -i @tsjam/webpack-parts`
+Usage: `npm i --save-dev tsjam-cli`
 
-Note: after install it would auto-eject all its parts into:
+### Webpack parts
 
-- .webpack – all preconfigured plugins with webpack config
+Usage: `tsjam-cli --add-webpack`
+
+Note: the following changes would be made:
+
+- add .webpack – all preconfigured plugins with webpack config
 - add wp:start/build scripts into ur package.json
-- add devDependencies into ur package.json
+- add webpack related devDependencies into ur package.json
 - add .env file for local environment variables usage
-- install react & react-dom with types
 
 [webpack-cli]: https://www.npmjs.com/package/webpack-cli
 [survive-js-webpack]: https://survivejs.com/webpack/foreword/
@@ -25,3 +28,12 @@ Note: after install it would auto-eject all its parts into:
 > Webpack does not set global `NODE_ENV` based on mode by default.
 > If you have any external tooling, such as Babel, relying on it, make sure to set it explicitly.
 > https://github.com/webpack/webpack-cli/issues/2362
+
+### React parts
+
+Usage: `tsjam-cli --add-react`
+
+Note: the following changes would be made:
+
+- install react 18 & react-dom with types
+- create app sample into public and src folders accordingly

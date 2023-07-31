@@ -1,27 +1,20 @@
 const fs = require('fs');
-const { resolveToRoot, resolveToNodeModules, resolveToPath } = require('../scripts/resolve');
+const { resolveToRoot, resolveToPath } = require('../scripts/resolve');
 const os = require('os');
-const { exec } = require('../scripts/exec');
 
-const CONFIG_TARGET = '.webpack';
 const resolveToLib = resolveToPath('./../');
-const CONFIG_SRC = resolveToLib('./webpack');
 
-/**
- * Extracts parts into the webpack config.
- * @Usage
- *    "check:shared-dependencies": "$ node eject-webpack <target-package-name>"
- */
-
-const args = process.argv.slice(2);
-const target = args[0] || CONFIG_TARGET;
-const targetPath = resolveToRoot(target);
-console.info('Webpack config would be ejected into:', targetPath);
-
+/** Extracts parts into the .webpack config */
 const copyParts = () => {
+  const targetPath = resolveToRoot('.webpack');
+  console.info('Webpack config would be ejected into:', targetPath);
   const fromPath = './webpack';
+  if (!fs.existsSync(fromPath)) {
+    console.error('Could not locate webpack template', fromPath);
+    return;
+  }
   try {
-    fs.cp(CONFIG_SRC, targetPath, { recursive: true }, () =>
+    fs.cp(fromPath, targetPath, { recursive: true }, () =>
       console.info('Webpack Parts ejected: .webpack; wp:start/build scripts; .env file;'),
     );
   } catch (err) {
@@ -31,7 +24,6 @@ const copyParts = () => {
 };
 
 const updatePkgJson = (newPkgJson) => {
-  const os = require('os');
   fs.writeFileSync(resolveToRoot('package.json'), JSON.stringify(newPkgJson, null, 2) + os.EOL);
 };
 
@@ -70,9 +62,10 @@ const addDotEnv = () => {
   });
 };
 
-copyParts();
-ejectScriptsAndDeps();
-addDotEnv();
+const addWebpack = () => {
+  copyParts();
+  ejectScriptsAndDeps();
+  addDotEnv();
+};
 
-exec('npm install --save-prod react react-dom --ignore-scripts');
-exec('npm install --save-dev @types/react @types/react-dom --ignore-scripts');
+module.exports = { addWebpack };

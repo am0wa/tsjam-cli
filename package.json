@@ -1,16 +1,16 @@
 {
-  "name": "@tsjam/webpack-parts",
+  "name": "tsjam-cli",
   "version": "0.0.1",
-  "description": "Shared webpack plugins configurations: webpack",
+  "description": "CLI for ts react webpack & friends",
   "main": "",
   "keywords": [
-    "shared webpack config"
+    "atomic webpack ts react configs"
   ],
   "author": "am0wa",
   "contributors": [
     "am0wa"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/am0wa/tsjam/issues"
   },
@@ -18,23 +18,24 @@
   "scripts": {
     "wp:start": "webpack serve --node-env=development --config .webpack/config.development.ts",
     "wp:build": "webpack build --node-env=production --config .webpack/config.production.ts",
-    "build": "tsc --project ./tsconfig.json",
+    "build": "tsc --project ./tsconfig.json --noEmit",
     "clean:dist": "rimraf lib",
     "code:format": "prettier './**/**.{js,jsx,ts,tsx}' --write",
-    "prepublishOnly": "run-s clean:dist build",
+    "prepublishOnly": "npm run clean:dist && npm run build",
     "prepare": "husky install",
-    "postinstall": "node cli/eject.js"
+    "postinstall": "node bin/cli.js --help"
   },
   "files": [
-    "cli",
+    "bin",
     "scripts",
+    "react-template",
     "webpack",
     "package.json"
   ],
   "bin": {
-    "wp-eject": "cli/eject.js"
+    "tsjam-cli": "bin/cli.js"
   },
-  "prettier": "./prettier.config.js",
+  "prettier": "@tsjam/web-config-base/prettier.config.js",
   "dependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@svgr/webpack": "8.0.1",
@@ -51,29 +52,25 @@
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-pxtorem": "^6.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.64.1",
     "sass-loader": "^13.3.2",
     "swc-loader": "^0.2.3",
     "terser-webpack-plugin": "^5.3.9",
     "ts-node": "^10.9.1",
-    "webpack": "5.x",
-    "webpack-cli": ">=5.x",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-manifest-plugin": "^5.0.0",
     "webpack-merge": "^5.9.0"
   },
   "peerDependencies": {
-    "typescript": ">=4",
-    "webpack": "5.x",
-    "webpack-cli": ">=5.x"
+    "typescript": ">=4"
   },
   "devDependencies": {
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
-    "prettier": "^3.0.0",
-    "typescript": "^5.1.6",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "@tsjam/web-config-base": "^0.1.0",
+    "typescript": "^5.1.6"
   },
   "lint-staged": {
     "*.{ts,tsx,js,css,scss,md}": "prettier --write"
