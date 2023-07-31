@@ -1,6 +1,6 @@
 {
   "name": "tsjam-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI for ts react webpack & friends",
   "main": "",
   "keywords": [
@@ -16,8 +16,6 @@
   },
   "homepage": "https://github.com/am0wa/tsjam#readme",
   "scripts": {
-    "wp:start": "webpack serve --node-env=development --config .webpack/config.development.ts",
-    "wp:build": "webpack build --node-env=production --config .webpack/config.production.ts",
     "build": "tsc --project ./tsconfig.json --noEmit",
     "clean:dist": "rimraf lib",
     "code:format": "prettier './**/**.{js,jsx,ts,tsx}' --write",

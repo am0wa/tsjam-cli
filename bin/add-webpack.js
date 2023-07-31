@@ -1,6 +1,9 @@
 const fs = require('fs');
-const { resolveToRoot, resolveToPath } = require('../scripts/resolve');
+const resolve = require('../scripts/resolve');
 const os = require('os');
+
+const resolveToPath = resolve.resolveToPath;
+const resolveToRoot = resolve.resolveToRoot;
 
 const resolveToLib = resolveToPath('./../');
 
@@ -68,4 +71,4 @@ const addWebpack = () => {
   addDotEnv();
 };
 
-module.exports = { addWebpack };
+module.exports = addWebpack;

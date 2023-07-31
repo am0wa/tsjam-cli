@@ -1,5 +1,5 @@
-const { addReact } = require('./add-react');
-const { addWebpack } = require('./add-webpack');
+const addReact = require('./add-react');
+const addWebpack = require('./add-webpack');
 
 const cmd = {
   help: '--help',

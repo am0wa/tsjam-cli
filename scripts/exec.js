@@ -10,6 +10,4 @@ const exec = (command, cwd = process.cwd()) => {
   }
 };
 
-module.exports = {
-  exec,
-};
+module.exports = exec;

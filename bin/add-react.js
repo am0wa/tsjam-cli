@@ -1,5 +1,5 @@
-const { resolveToRoot } = require('../scripts/resolve');
-const { exec } = require('../scripts/exec');
+const paths = require('../scripts/resolve');
+const exec = require('../scripts/exec');
 const fs = require('fs');
 
 const installDeps = () => {
@@ -9,7 +9,7 @@ const installDeps = () => {
 
 const copyParts = () => {
   const fromPath = './react-template';
-  const targetPath = resolveToRoot('./');
+  const targetPath = paths.resolveToRoot('./');
   if (!fs.existsSync(fromPath)) {
     console.error('Could not locate react template', fromPath);
     return;
@@ -27,4 +27,4 @@ const addReact = () => {
   copyParts();
 };
 
-module.exports = { addReact };
+module.exports = addReact;
