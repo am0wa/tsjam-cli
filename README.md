@@ -30,6 +30,8 @@
 > If you have any external tooling, such as Babel, relying on it, make sure to set it explicitly.
 > https://github.com/webpack/webpack-cli/issues/2362
 
+- no worries, we've set it for u explicitly ^\_^
+
 ### React parts
 
 **Usage:** `tsjam-cli --add-react`
@@ -38,3 +40,16 @@
 
 - install react 18 & react-dom with types
 - create app sample into public and src folders accordingly
+
+### Tsjam parts
+
+**Usage:** `tsjam-cli --add-tsjam`
+
+**Note:** the following changes would be made:
+
+- install typescript; init tsconfig
+- setup eslint & prettier tsjam recommended configs
+- setup scripts and pre-commit lint-staged hook
+- install tsjam core ts toolkit
+
+https://www.npmjs.com/package/tsjam

@@ -17,25 +17,22 @@
   "homepage": "https://github.com/am0wa/tsjam#readme",
   "scripts": {
     "build": "tsc --project ./tsconfig.json --noEmit",
-    "clean:dist": "rimraf lib",
-    "code:format": "prettier './**/**.{js,jsx,ts,tsx}' --write",
-    "prepublishOnly": "npm run clean:dist && npm run build",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build",
     "prepare": "husky install",
-    "postinstall": "node bin/cli.js --help",
-    "add-react": "node bin/cli.js --add-react"
+    "postinstall": "node bin/cli.js --help"
   },
   "files": [
     "bin",
     "scripts",
     "react-template",
+    "tsjam-template",
     "webpack",
     "package.json"
   ],
   "bin": {
     "tsjam-cli": "bin/cli.js"
   },
-  "prettier": "@tsjam/web-config-base/prettier.config.js",
-  "dependencies": {},
   "peerDependencies": {
     "typescript": ">=4",
     "webpack": "5.x",
@@ -45,7 +42,8 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@svgr/webpack": "8.0.1",
     "@swc/core": "^1.3.72",
-    "@tsjam/web-config-base": "^0.1.0",
+    "@tsjam/eslint-config-recommended": "^0.1.0",
+    "@tsjam/web-config-base": "^0.1.1",
     "@types/postcss-pxtorem": "^6.0.0",
     "autoprefixer": "^10.4.14",
     "clean-webpack-plugin": "^4.0.0",
@@ -69,7 +67,9 @@
     "webpack-manifest-plugin": "^5.0.0",
     "webpack-merge": "^5.9.0"
   },
+  "prettier": "@tsjam/web-config-base/prettier.config.js",
   "lint-staged": {
-    "*.{ts,tsx,js,css,scss,md}": "prettier --write"
+    "*.{ts,tsx,js}": "eslint --cache --fix",
+    "*.{ts,tsx,js,css,md}": "prettier --write"
   }
 }

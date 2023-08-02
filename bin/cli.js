@@ -11,11 +11,13 @@
 
 const addReact = require('./add-react');
 const addWebpack = require('./add-webpack');
+const addTsjam = require('./add-tsjam');
 
 const cmd = {
   help: '--help',
   addWebpack: '--add-webpack',
   addReact: '--add-react',
+  addTsjam: '--add-tsjam',
 };
 
 const help = [cmd.help, cmd.addReact, cmd.addWebpack];
@@ -32,6 +34,12 @@ const proceed = () => {
   if (args.includes(cmd.addReact)) {
     console.info('Adding react...');
     addReact();
+    return;
+  }
+
+  if (args.includes(cmd.addTsjam)) {
+    console.info('Adding tsjam...🍰');
+    addTsjam();
     return;
   }
 
