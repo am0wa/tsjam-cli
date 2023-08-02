@@ -1,3 +1,4 @@
+/* eslint-disable import/no-default-export */
 declare module '*.avif' {
   const src: string;
   export default src;
@@ -56,3 +57,4 @@ declare module '*.module.sass' {
   const classes: { readonly [key: string]: string };
   export default classes;
 }
+/* eslint-enable import/no-default-export */

@@ -24,6 +24,7 @@ coverage
 .DS_Store
 .env.*
 
+*css.d.ts
 
 # ide
 .idea/*

@@ -66,13 +66,4 @@ export const baseConfig: Configuration = merge(
     version: APP_VERSION,
   }),
   progress(),
-  copy({
-    patterns: [
-      {
-        from: paths.resolveSrc('assets'),
-        to: paths.resolveDist('assets'),
-        force: true,
-      },
-    ],
-  }),
 );

@@ -3,11 +3,11 @@
   "compilerOptions": {
     "target": "es2018", // ES9
     /* Paths */
-    "baseUrl": ".",
+    "baseUrl": "./",
     "outDir": "dist", // "lib"
     "paths": {
       "*": ["*", "src/*"]
     }
   },
-  "exclude": ["react-template/**/*", "package/**/*"]
+  "exclude": ["package/**/*"]
 }
