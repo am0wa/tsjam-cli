@@ -1,8 +1,7 @@
+const fs = require('fs');
 const exec = require('../scripts/exec');
 const paths = require('../scripts/resolve');
-const fs = require('fs');
-const os = require('os');
-const basePkgJson = require('../tsjam-template/pkg-template.json');
+const pkg = require('../scripts/write-pkg');
 
 const installDeps = () => {
   exec('npm install --save-dev typescript @tsjam/web-config-base @tsjam/eslint-config-recommended --ignore-scripts');
@@ -10,7 +9,7 @@ const installDeps = () => {
 };
 
 const copyParts = () => {
-  const fromPath = './tsjam-template';
+  const fromPath = paths.resolveOwn('./tsjam-template');
   const targetPath = paths.resolveToRoot('./');
   if (!fs.existsSync(fromPath)) {
     console.error('Could not locate tsjam template', fromPath);
@@ -39,7 +38,7 @@ const pkgSetConfigs = () => {
   const targetPkg = paths.resolveToRoot('package.json');
   const targetPkgJson = require(targetPkg);
 
-  const basePkgJson = require('../tsjam-template/pkg-template.json');
+  const basePkgJson = require(paths.resolveOwn('./tsjam-template/pkg-template.json'));
   console.log('> adding pkg configs:', JSON.stringify(basePkgJson, null, '\r\t'));
 
   const newPkgJson = {
@@ -48,11 +47,7 @@ const pkgSetConfigs = () => {
     scripts: { ...targetPkgJson.scripts, ...basePkgJson.scripts },
   };
 
-  updatePkgJson(newPkgJson);
-};
-
-const updatePkgJson = (newPkgJson) => {
-  fs.writeFileSync(paths.resolveToRoot('package.json'), JSON.stringify(newPkgJson, null, 2) + os.EOL);
+  pkg.write(newPkgJson);
 };
 
 const addTsjam = () => {

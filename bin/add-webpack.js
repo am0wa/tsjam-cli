@@ -1,17 +1,12 @@
 const fs = require('fs');
-const resolve = require('../scripts/resolve');
-const os = require('os');
-
-const resolveToPath = resolve.resolveToPath;
-const resolveToRoot = resolve.resolveToRoot;
-
-const resolveToLib = resolveToPath('./../');
+const paths = require('../scripts/resolve');
+const pkg = require('../scripts/write-pkg');
 
 /** Extracts parts into the .webpack config */
 const copyParts = () => {
-  const targetPath = resolveToRoot('.webpack');
+  const targetPath = paths.resolveToRoot('.webpack');
   console.info('Webpack config would be ejected into:', targetPath);
-  const fromPath = './webpack';
+  const fromPath = paths.resolveOwn('./webpack');
   if (!fs.existsSync(fromPath)) {
     console.error('Could not locate webpack template', fromPath);
     return;
@@ -26,12 +21,8 @@ const copyParts = () => {
   }
 };
 
-const updatePkgJson = (newPkgJson) => {
-  fs.writeFileSync(resolveToRoot('package.json'), JSON.stringify(newPkgJson, null, 2) + os.EOL);
-};
-
 const ejectScriptsAndDeps = () => {
-  const targetPkg = resolveToRoot('package.json');
+  const targetPkg = paths.resolveToRoot('package.json');
   const targetPkgJson = require(targetPkg);
 
   const newScripts = {
@@ -40,7 +31,7 @@ const ejectScriptsAndDeps = () => {
   };
   console.log('> adding scripts:', JSON.stringify(newScripts, null, '\r\t'));
 
-  const basePkgJson = require(resolveToLib('package.json'));
+  const basePkgJson = require(paths.resolveOwn('package.json'));
   console.log('> adding devDependencies:', JSON.stringify(basePkgJson.devDependencies, null, '\r\t'));
 
   const newPkgJson = {
@@ -49,11 +40,11 @@ const ejectScriptsAndDeps = () => {
     devDependencies: { ...targetPkgJson.devDependencies, ...basePkgJson.devDependencies },
   };
 
-  updatePkgJson(newPkgJson);
+  pkg.write(newPkgJson);
 };
 
 const addDotEnv = () => {
-  const dotEnvPath = resolveToRoot('.env');
+  const dotEnvPath = paths.resolveToRoot('.env');
   if (fs.existsSync(dotEnvPath)) {
     console.log('.env already exists');
     return;
