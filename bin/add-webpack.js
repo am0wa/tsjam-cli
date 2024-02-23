@@ -25,6 +25,11 @@ const ejectScriptsAndDeps = () => {
   const targetPkg = paths.resolveToRoot('package.json');
   const targetPkgJson = require(targetPkg);
 
+  if (!fs.existsSync(targetPkg)) {
+    console.error(`package.json is not exists yet run 'npm init' first`, targetPkg);
+    return;
+  }
+
   const newScripts = {
     'wp:start': 'webpack serve --node-env=development --config .webpack/config.development.ts',
     'wp:build': 'webpack build --node-env=production --config .webpack/config.production.ts',
