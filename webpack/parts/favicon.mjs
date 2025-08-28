@@ -1,16 +1,10 @@
-import { Configuration } from 'webpack';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 
-type FaviconsOptions = {
-  logo: string;
-  appName: string;
-};
-
 /**
- * Leverages on favicons to automatically generate your favicons for you.
- * https://www.npmjs.com/package/favicons-webpack-plugin
+ * @param options {{ logo: string, appName: string }}
+ * @returns {import('webpack').Configuration}
  */
-export const favicon = ({ logo, appName }: FaviconsOptions): Configuration => ({
+export const favicon = ({ logo, appName }) => ({
   plugins: [
     new FaviconsWebpackPlugin({
       logo,

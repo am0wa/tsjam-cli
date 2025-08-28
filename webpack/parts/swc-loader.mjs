@@ -1,12 +1,9 @@
-import { Configuration } from 'webpack';
-
-import { isDev } from './is-dev';
+import { isDev } from './is-dev.mjs';
 
 /**
- * > SWC is 20x faster than Babel on a single thread and 70x faster on four cores. 🏎
- * Allows you to use SWC with webpack: https://swc.rs/
+ * @returns {import('webpack').Configuration}
  */
-export const swcLoader = (): Configuration => ({
+export const swcLoader = () => ({
   module: {
     rules: [
       {

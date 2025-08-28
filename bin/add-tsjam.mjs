@@ -1,7 +1,9 @@
-const fs = require('fs');
-const exec = require('../scripts/exec');
-const paths = require('../scripts/resolve');
-const pkg = require('../scripts/write-pkg');
+#!/usr/bin/env node --experimental-modules
+import fs, { readFileSync } from 'fs';
+
+import exec from '../scripts/exec.mjs';
+import paths from '../scripts/resolve.mjs';
+import pkg from '../scripts/write-pkg.mjs';
 
 const installDeps = () => {
   exec('npm install --save-dev typescript @tsjam/web-config-base @tsjam/eslint-config-recommended --ignore-scripts');
@@ -36,9 +38,10 @@ const copyParts = () => {
 
 const pkgSetConfigs = () => {
   const targetPkg = paths.resolveToRoot('package.json');
-  const targetPkgJson = require(targetPkg);
+  const targetPkgJson = JSON.parse(readFileSync(targetPkg, 'utf8'));
 
-  const basePkgJson = require(paths.resolveOwn('./tsjam-template/pkg-template.json'));
+  const basePkg = paths.resolveOwn('./tsjam-template/pkg-template.json');
+  const basePkgJson = JSON.parse(readFileSync(basePkg, 'utf8'));
   console.log('> adding pkg configs:', JSON.stringify(basePkgJson, null, '\r\t'));
 
   const newPkgJson = {
@@ -56,4 +59,4 @@ const addTsjam = () => {
   pkgSetConfigs();
 };
 
-module.exports = addTsjam;
+export default addTsjam;

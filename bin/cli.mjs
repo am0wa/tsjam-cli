@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --experimental-modules
 
 /**
  * Copyright (c) 2023-present, am0wa.
@@ -6,12 +6,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 'use strict';
 
-const addReact = require('./add-react');
-const addWebpack = require('./add-webpack');
-const addTsjam = require('./add-tsjam');
+import addReact from './add-react.mjs';
+import addTsjam from './add-tsjam.mjs';
+
+import addWebpack from './add-webpack.mjs';
+
+/**
+ * Copyright (c) 2023-present, am0wa.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
 const cmd = {
   help: '--help',

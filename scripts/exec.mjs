@@ -1,4 +1,4 @@
-const childProcess = require('child_process');
+import childProcess from 'child_process';
 
 const exec = (command, cwd = process.cwd()) => {
   console.log('> Executing command:', command);
@@ -10,4 +10,4 @@ const exec = (command, cwd = process.cwd()) => {
   }
 };
 
-module.exports = exec;
+export default exec;

@@ -1,7 +1,6 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import { Configuration } from 'webpack';
 
-export const cleanupDist = (): Configuration => ({
+export const cleanupDist = () => ({
   plugins: [
     new CleanWebpackPlugin({
       verbose: true,

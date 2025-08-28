@@ -1,11 +1,13 @@
 {
+  "type": "module",
+  "sideEffects": false,
   "scripts": {
     "build": "tsc --project ./tsconfig.json --noEmit",
     "clean": "rimraf dist",
     "prepublishOnly": "npm run clean && npm run build",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
-  "prettier": "@tsjam/web-config-base/prettier.config.js",
+  "prettier": "@tsjam/web-config-base/prettier.config.mjs",
   "lint-staged": {
     "*.{ts,tsx,js}": "eslint --cache --fix",
     "*.{ts,tsx,js,css,md}": "prettier --write"

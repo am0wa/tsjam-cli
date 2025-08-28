@@ -1,8 +1,10 @@
 {
   "name": "tsjam-cli",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "CLI for ts react webpack & friends",
   "main": "",
+  "type": "module",
+  "sideEffects": false,
   "keywords": [
     "atomic webpack ts react configs"
   ],
@@ -18,9 +20,9 @@
   "scripts": {
     "build": "tsc --project ./tsconfig.json --noEmit",
     "clean": "rimraf dist",
-    "prepublishOnly": "npm run clean && npm run build",
-    "prepare": "husky install",
-    "postinstall": "node bin/cli.js --help"
+    "prepare": "husky",
+    "postinstall": "node bin/cli.mjs --help",
+    "format": "prettier './**/**.{mjs,js,jsx,ts,tsx,css,scss}' --write"
   },
   "files": [
     "bin",
@@ -32,54 +34,57 @@
     "package.json"
   ],
   "bin": {
-    "tsjam-cli": "bin/cli.js"
+    "tsjam-cli": "bin/cli.mjs"
   },
   "peerDependencies": {
-    "typescript": ">=4",
+    "typescript": ">=5",
     "webpack": "5.x",
     "webpack-cli": "5.x"
   },
   "devDependencies": {
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
-    "@svgr/webpack": "8.0.1",
-    "@swc/core": "^1.3.72",
-    "@tsjam/eslint-config-recommended": "^0.1.0",
-    "@tsjam/web-config-base": "^0.1.1",
-    "@types/postcss-pxtorem": "^6.0.0",
-    "autoprefixer": "^10.4.14",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "@svgr/webpack": "^8.1.0",
+    "@swc/core": "^1.13.5",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@tsjam/eslint-config-recommended": "^0.2.3",
+    "@tsjam/web-config-base": "^0.3.1",
+    "@types/postcss-pxtorem": "^6.1.0",
+    "autoprefixer": "^10.4.21",
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.8.1",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^7.1.2",
     "css-modules-typescript-loader": "^4.0.1",
-    "cssnano": "^6.0.1",
-    "dotenv": "^16.3.1",
-    "eslint-webpack-plugin": "^4.0.1",
-    "favicons-webpack-plugin": "^6.0.0",
-    "fork-ts-checker-webpack-plugin": "^8.0.0",
-    "html-webpack-plugin": "^5.5.3",
-    "mini-css-extract-plugin": "^2.7.6",
-    "postcss-loader": "^7.3.3",
-    "postcss-pxtorem": "^6.0.0",
+    "cssnano": "^7.1.1",
+    "dotenv": "^17.2.1",
+    "eslint-webpack-plugin": "^5.0.2",
+    "favicons-webpack-plugin": "^6.0.1",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-webpack-plugin": "^5.6.4",
+    "mini-css-extract-plugin": "^2.9.4",
+    "postcss-loader": "^8.1.1",
+    "postcss-pxtorem": "^6.1.0",
+    "react-dev-utils": "^12.0.1",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.64.1",
-    "sass-loader": "^13.3.2",
-    "style-loader": "^3.3.3",
-    "swc-loader": "^0.2.3",
-    "terser-webpack-plugin": "^5.3.9",
-    "ts-node": "^10.9.1",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1",
-    "webpack-manifest-plugin": "^5.0.0",
-    "webpack-merge": "^5.9.0"
+    "sass": "^1.91.0",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "swc-loader": "^0.2.6",
+    "terser-webpack-plugin": "^5.3.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-manifest-plugin": "^5.0.1",
+    "webpack-merge": "^6.0.1"
   },
   "optionalDependencies": {
-    "@types/react": "^18.2.58",
-    "@types/react-dom": "^18.2.19",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
-  "prettier": "@tsjam/web-config-base/prettier.config.js",
+  "prettier": "./prettier.config.mjs",
   "lint-staged": {
     "*.{ts,tsx,js}": "eslint --cache --fix",
     "*.{ts,tsx,js,css,md}": "prettier --write"

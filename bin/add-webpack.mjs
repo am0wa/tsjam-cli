@@ -1,6 +1,8 @@
-const fs = require('fs');
-const paths = require('../scripts/resolve');
-const pkg = require('../scripts/write-pkg');
+#!/usr/bin/env node --experimental-modules
+import fs, { readFileSync } from 'fs';
+
+import paths from '../scripts/resolve.mjs';
+import pkg from '../scripts/write-pkg.mjs';
 
 /** Extracts parts into the .webpack config */
 const copyParts = () => {
@@ -23,7 +25,7 @@ const copyParts = () => {
 
 const ejectScriptsAndDeps = () => {
   const targetPkg = paths.resolveToRoot('package.json');
-  const targetPkgJson = require(targetPkg);
+  const targetPkgJson = JSON.parse(readFileSync(targetPkg, 'utf8'));
 
   if (!fs.existsSync(targetPkg)) {
     console.error(`package.json is not exists yet run 'npm init' first`, targetPkg);
@@ -36,13 +38,17 @@ const ejectScriptsAndDeps = () => {
   };
   console.log('> adding scripts:', JSON.stringify(newScripts, null, '\r\t'));
 
-  const basePkgJson = require(paths.resolveOwn('package.json'));
+  const basePkg = paths.resolveOwn('package.json');
+  const basePkgJson = JSON.parse(readFileSync(basePkg, 'utf8'));
   console.log('> adding devDependencies:', JSON.stringify(basePkgJson.devDependencies, null, '\r\t'));
 
   const newPkgJson = {
     ...targetPkgJson,
     scripts: { ...newScripts, ...targetPkgJson.scripts },
-    devDependencies: { ...targetPkgJson.devDependencies, ...basePkgJson.devDependencies },
+    devDependencies: {
+      ...targetPkgJson.devDependencies,
+      ...basePkgJson.devDependencies,
+    },
   };
 
   pkg.write(newPkgJson);
@@ -67,4 +73,4 @@ const addWebpack = () => {
   addDotEnv();
 };
 
-module.exports = addWebpack;
+export default addWebpack;

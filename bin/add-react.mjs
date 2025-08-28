@@ -1,6 +1,8 @@
-const fs = require('fs');
-const paths = require('../scripts/resolve');
-const exec = require('../scripts/exec');
+#!/usr/bin/env node --experimental-modules
+import fs from 'fs';
+
+import exec from '../scripts/exec.mjs';
+import paths from '../scripts/resolve.mjs';
 
 const installDeps = () => {
   exec('npm install --save-prod react react-dom --ignore-scripts');
@@ -28,4 +30,4 @@ const addReact = () => {
   copyParts();
 };
 
-module.exports = addReact;
+export default addReact;

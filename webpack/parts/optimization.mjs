@@ -1,13 +1,9 @@
-import { Configuration } from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 
 /**
- * Webpack v5 comes with the latest terser-webpack-plugin out of the box.
- * If you are using Webpack v5 or above and wish to customize the options,
- * you will still need to install terser-webpack-plugin.
- * https://www.npmjs.com/package/terser-webpack-plugin
+ * @returns {import('webpack').Configuration}
  */
-export const optimization = (): Configuration => ({
+export const optimization = () => ({
   performance: {
     hints: false,
   },
@@ -17,6 +13,7 @@ export const optimization = (): Configuration => ({
     removeEmptyChunks: false,
     chunkIds: 'named',
     moduleIds: 'named',
+    minimize: true,
     runtimeChunk: {
       name: 'runtime',
     },

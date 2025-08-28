@@ -1,5 +1,0 @@
-{
-  "parserOptions": { "project": "./tsconfig.json" },
-  "ignorePatterns": ["node_modules", "lib", "docs", "*.js"],
-  "extends": ["@tsjam/eslint-config-recommended"]
-}
