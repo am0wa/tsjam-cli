@@ -38,7 +38,7 @@ const copyParts = () => {
   // remove extracted gitignore if exists (would be copied with rename below)
   const extractedGitignorePath = paths.resolveToRoot('./gitignore');
   if (fs.existsSync(extractedGitignorePath)) {
-    fs.rmSync(extractedGitignorePath);
+    fs.rmSync(extractedGitignorePath, { force: true });
   }
 };
 
@@ -49,11 +49,6 @@ const copyGitignore = () => {
   const templateGitignorePath = paths.resolveOwn('./tsjam-template/gitignore');
   if (!fs.existsSync(gitignorePath) && fs.existsSync(templateGitignorePath)) {
     fs.copyFileSync(templateGitignorePath, gitignorePath);
-  }
-  // remove extracted gitignore if exists
-  const extractedGitignorePath = paths.resolveToRoot('./gitignore');
-  if (fs.existsSync(extractedGitignorePath)) {
-    fs.rmSync(extractedGitignorePath);
   }
 };
 
