@@ -35,14 +35,25 @@ const copyParts = () => {
     console.error(colors.red(`Unable to copy files from:${fromPath} to:${targetPath}`), err);
     process.exit(1);
   }
+  // remove extracted gitignore if exists (would be copied with rename below)
+  const extractedGitignorePath = paths.resolveToRoot('./gitignore');
+  if (fs.existsSync(extractedGitignorePath)) {
+    fs.rmSync(extractedGitignorePath);
+  }
 };
 
 // Rename extracted gitignore into .gitignore
 const copyGitignore = () => {
   const gitignorePath = paths.resolveToRoot('./.gitignore');
+  // copy gitignore into .gitignore if not exists
+  const templateGitignorePath = paths.resolveOwn('./tsjam-template/gitignore');
+  if (!fs.existsSync(gitignorePath) && fs.existsSync(templateGitignorePath)) {
+    fs.copyFileSync(templateGitignorePath, gitignorePath);
+  }
+  // remove extracted gitignore if exists
   const extractedGitignorePath = paths.resolveToRoot('./gitignore');
-  if (!fs.existsSync(gitignorePath) && fs.existsSync(extractedGitignorePath)) {
-    fs.renameSync(extractedGitignorePath, gitignorePath);
+  if (fs.existsSync(extractedGitignorePath)) {
+    fs.rmSync(extractedGitignorePath);
   }
 };
 
