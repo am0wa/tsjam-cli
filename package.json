@@ -1,12 +1,12 @@
 {
   "name": "tsjam-cli",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "CLI for ts react webpack & friends",
   "main": "",
   "type": "module",
   "sideEffects": false,
   "keywords": [
-    "atomic webpack ts react configs"
+    "Atomic ts esm, react, jest, webpack configs"
   ],
   "author": "am0wa",
   "contributors": [
@@ -29,8 +29,9 @@
     "bin",
     "scripts",
     "react-template",
-    "tsjam-template",
     "jest-template",
+    "tsjam-template",
+    "tsjam-template/.npmrc",
     "tsjam-template/.gitignore",
     "webpack",
     "package.json"

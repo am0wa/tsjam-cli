@@ -69,18 +69,6 @@ const help = [cmd.help, cmd.addTsjam, cmd.addJest, cmd.addReact, cmd.addWebpack]
 const proceed = () => {
   const args = process.argv.slice(2);
 
-  if (args.includes(cmd.addWebpack)) {
-    console.info(colors.green('Adding webpack...📦'));
-    addWebpack();
-    return;
-  }
-
-  if (args.includes(cmd.addReact)) {
-    console.info(colors.green('Adding react...⚛️'));
-    addReact();
-    return;
-  }
-
   if (args.includes(cmd.addTsjam)) {
     console.info(colors.green('Adding tsjam...🍰'));
     addTsjam();
@@ -90,6 +78,18 @@ const proceed = () => {
   if (args.includes(cmd.addJest)) {
     console.info(colors.green('Adding jest...🔬'));
     addJest();
+    return;
+  }
+
+  if (args.includes(cmd.addReact)) {
+    console.info(colors.green('Adding react...⚛️'));
+    addReact();
+    return;
+  }
+
+  if (args.includes(cmd.addWebpack)) {
+    console.info(colors.green('Adding webpack...📦'));
+    addWebpack();
     return;
   }
 

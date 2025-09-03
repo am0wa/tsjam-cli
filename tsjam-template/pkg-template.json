@@ -4,6 +4,8 @@
   "scripts": {
     "build": "tsc --project ./tsconfig.json --noEmit",
     "clean": "rimraf dist",
+    "lint": "eslint .",
+    "format": "prettier './**/**.{mjs,js,jsx,ts,tsx,css,scss}' --write",
     "prepublishOnly": "npm run clean && npm run build",
     "prepare": "husky"
   },
