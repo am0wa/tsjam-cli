@@ -15,7 +15,7 @@ const copyParts = () => {
   const fromPath = paths.resolveOwn(templatePath);
   const targetPath = paths.resolveToRoot('./');
   if (!fs.existsSync(fromPath)) {
-    console.error('Could not locate tsjame template', fromPath);
+    console.error('Could not locate tsjam jest template', fromPath);
     return;
   }
   console.log('> vanilla flat configs ts jest...🍯');

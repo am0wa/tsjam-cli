@@ -1,6 +1,6 @@
 {
   "name": "tsjam-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CLI for ts react webpack & friends",
   "main": "",
   "type": "module",
@@ -30,6 +30,7 @@
     "scripts",
     "react-template",
     "tsjam-template",
+    "jest-template",
     "tsjam-template/.gitignore",
     "webpack",
     "package.json"
