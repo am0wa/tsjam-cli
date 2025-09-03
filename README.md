@@ -38,8 +38,19 @@
 
 **Note:** the following changes would be made:
 
-- install react 18 & react-dom with types
+- install react 19 & react-dom with types
 - create app sample into public and src folders accordingly
+
+### Jest parts
+
+**Usage:** `tsjam-cli --add-jest`
+
+**Note:** the following changes would be made:
+
+- install jest & jest-recommended configs
+- setup jest30 ESM configs
+- create 'tests' folder with sample.test.ts file
+- setup tsconfig for jest
 
 ### Tsjam parts
 

@@ -6,18 +6,19 @@ import paths from '../scripts/resolve.mjs';
 import pkg from '../scripts/write-pkg.mjs';
 
 const installDeps = () => {
-  exec('npm install --save-dev typescript @tsjam/web-config-base @tsjam/eslint-config-recommended --ignore-scripts');
-  exec('npm install --save-prod rxjs tsjam --ignore-scripts');
+  exec('npm install --save-dev @tsjam/jest-config-recommended --ignore-scripts');
 };
 
+const templatePath = './jest-template';
+
 const copyParts = () => {
-  const fromPath = paths.resolveOwn('./tsjam-template');
+  const fromPath = paths.resolveOwn(templatePath);
   const targetPath = paths.resolveToRoot('./');
   if (!fs.existsSync(fromPath)) {
-    console.error('Could not locate tsjam template', fromPath);
+    console.error('Could not locate tsjame template', fromPath);
     return;
   }
-  console.log('> vanilla configs ts lint prettier...🍯');
+  console.log('> vanilla flat configs ts jest...🍯');
   try {
     fs.cp(
       fromPath,
@@ -28,7 +29,7 @@ const copyParts = () => {
           return !source.includes('-template.json');
         },
       },
-      () => console.info('TsJam Template ejected.'),
+      () => console.info('TsJam Jest Template ejected.'),
     );
   } catch (err) {
     console.error(`Unable to copy files from:${fromPath} to:${targetPath}`, err);
@@ -36,10 +37,10 @@ const copyParts = () => {
   }
 };
 
-const addTsjam = () => {
+const addJest = () => {
   installDeps();
   copyParts();
-  pkg.merge('./tsjam-template/pkg-template.json');
+  pkg.merge('./jest-template/pkg-template.json');
 };
 
-export default addTsjam;
+export default addJest;

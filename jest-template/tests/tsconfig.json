@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext", // important: jest crashes to resolve module: NodeNext!
+    "moduleResolution": "nodenext",
+    "isolatedModules": true,
+    "allowJs": true,
+  }
+}

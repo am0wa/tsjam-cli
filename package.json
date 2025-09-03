@@ -1,6 +1,6 @@
 {
   "name": "tsjam-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for ts react webpack & friends",
   "main": "",
   "type": "module",
@@ -22,7 +22,8 @@
     "clean": "rimraf dist",
     "prepare": "husky",
     "postinstall": "node bin/cli.mjs --help",
-    "format": "prettier './**/**.{mjs,js,jsx,ts,tsx,css,scss}' --write"
+    "format": "prettier './**/**.{mjs,js,jsx,ts,tsx,css,scss}' --write",
+    "test": "jest tests"
   },
   "files": [
     "bin",
@@ -47,6 +48,7 @@
     "@swc/core": "^1.13.5",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@tsjam/eslint-config-recommended": "^0.2.3",
+    "@tsjam/jest-config-recommended": "^0.4.0",
     "@tsjam/web-config-base": "^0.3.1",
     "@types/postcss-pxtorem": "^6.1.0",
     "autoprefixer": "^10.4.21",
