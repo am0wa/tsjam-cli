@@ -26,7 +26,7 @@ const copyParts = () => {
       {
         recursive: true,
         filter(source, destination) {
-          return !source.includes('-template.json');
+          return !source.includes('-template.json') && !source.endsWith('gitignore');
         },
       },
       () => console.info(colors.green('TsJam Template ejected.')),
@@ -34,11 +34,6 @@ const copyParts = () => {
   } catch (err) {
     console.error(colors.red(`Unable to copy files from:${fromPath} to:${targetPath}`), err);
     process.exit(1);
-  }
-  // remove extracted gitignore if exists (would be copied with rename below)
-  const extractedGitignorePath = paths.resolveToRoot('./gitignore');
-  if (fs.existsSync(extractedGitignorePath)) {
-    fs.rmSync(extractedGitignorePath, { force: true });
   }
 };
 
