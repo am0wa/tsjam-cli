@@ -1,5 +1,6 @@
 #!/usr/bin/env node --experimental-modules
 import fs, { readFileSync } from 'fs';
+import colors from 'yoctocolors';
 
 import paths from '../scripts/resolve.mjs';
 import pkg from '../scripts/write-pkg.mjs';
@@ -10,7 +11,7 @@ const copyParts = () => {
   console.info('Webpack config would be ejected into:', targetPath);
   const fromPath = paths.resolveOwn('./webpack');
   if (!fs.existsSync(fromPath)) {
-    console.error('Could not locate webpack template', fromPath);
+    console.error(colors.red('Could not locate webpack template'), fromPath);
     return;
   }
   try {
@@ -18,7 +19,7 @@ const copyParts = () => {
       console.info('Webpack Parts ejected: .webpack; wp:start/build scripts; .env file;'),
     );
   } catch (err) {
-    console.error(`Unable to copy files from:${fromPath} to:${targetPath}`, err);
+    console.error(colors.red(`Unable to copy files from:${fromPath} to:${targetPath}`), err);
     process.exit(1);
   }
 };
@@ -28,7 +29,7 @@ const ejectScriptsAndDeps = () => {
   const targetPkgJson = JSON.parse(readFileSync(targetPkg, 'utf8'));
 
   if (!fs.existsSync(targetPkg)) {
-    console.error(`package.json is not exists yet run 'npm init' first`, targetPkg);
+    console.error(colors.red(`package.json does not exist yet – run ${colors.blue('npm init')} first`), targetPkg);
     return;
   }
 
@@ -52,6 +53,7 @@ const ejectScriptsAndDeps = () => {
   };
 
   pkg.write(newPkgJson);
+  console.info(colors.green('TsJam Webpack parts ejected.'));
 };
 
 const addDotEnv = () => {

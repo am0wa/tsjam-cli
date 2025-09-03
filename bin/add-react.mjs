@@ -1,5 +1,6 @@
 #!/usr/bin/env node --experimental-modules
 import fs from 'fs';
+import colors from 'yoctocolors';
 
 import exec from '../scripts/exec.mjs';
 import paths from '../scripts/resolve.mjs';
@@ -13,14 +14,14 @@ const copyParts = () => {
   const fromPath = paths.resolveOwn('./react-template');
   const targetPath = paths.resolveToRoot('./');
   if (!fs.existsSync(fromPath)) {
-    console.error('Could not locate react template', fromPath);
+    console.error(colors.red('Could not locate react template'), fromPath);
     return;
   }
 
   try {
-    fs.cp(fromPath, targetPath, { recursive: true }, () => console.info('React Template ejected.'));
+    fs.cp(fromPath, targetPath, { recursive: true }, () => console.info(colors.green('TsJam React Template ejected.')));
   } catch (err) {
-    console.error(`Unable to copy files from:${fromPath} to:${targetPath}`, err);
+    console.error(colors.red(`Unable to copy files from:${fromPath} to:${targetPath}`), err);
     process.exit(1);
   }
 };

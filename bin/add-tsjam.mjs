@@ -1,5 +1,6 @@
 #!/usr/bin/env node --experimental-modules
 import fs, { readFileSync } from 'fs';
+import colors from 'yoctocolors';
 
 import exec from '../scripts/exec.mjs';
 import paths from '../scripts/resolve.mjs';
@@ -28,10 +29,10 @@ const copyParts = () => {
           return !source.includes('-template.json');
         },
       },
-      () => console.info('TsJam Template ejected.'),
+      () => console.info(colors.green('TsJam Template ejected.')),
     );
   } catch (err) {
-    console.error(`Unable to copy files from:${fromPath} to:${targetPath}`, err);
+    console.error(colors.red(`Unable to copy files from:${fromPath} to:${targetPath}`), err);
     process.exit(1);
   }
 };
