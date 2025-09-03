@@ -37,9 +37,19 @@ const copyParts = () => {
   }
 };
 
+// Rename extracted gitignore into .gitignore
+const copyGitignore = () => {
+  const gitignorePath = paths.resolveToRoot('./.gitignore');
+  const extractedGitignorePath = paths.resolveToRoot('./gitignore');
+  if (!fs.existsSync(gitignorePath) && fs.existsSync(extractedGitignorePath)) {
+    fs.renameSync(extractedGitignorePath, gitignorePath);
+  }
+};
+
 const addTsjam = () => {
   installDeps();
   copyParts();
+  copyGitignore();
   pkg.merge('./tsjam-template/pkg-template.json');
 };
 
